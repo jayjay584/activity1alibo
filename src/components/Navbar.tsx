@@ -9,9 +9,21 @@ function Navbar() {
             </div>
 
             <ul className="flex gap-8 list-none">
-                {['Home', 'Products', 'About', 'Contact'].map((item) => (
+                {['Home', 'Menu', 'About', 'Contact'].map((item) => (
                     <li key={item}>
-                        <a href={`#${item.toLowerCase()}`} className="text-gray-500 hover:text-gray-900 text-[15px] font-medium transition-colors duration-200">
+                        <a
+                            href={`#${item.toLowerCase()}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const target = document.getElementById(item.toLowerCase());
+                                if (target) {
+                                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                } else {
+                                    console.warn(`No element with id="${item.toLowerCase()}" found on the page.`);
+                                }
+                            }}
+                            className="text-gray-500 hover:text-gray-900 text-[15px] font-medium transition-colors duration-200"
+                        >
                             {item}
                         </a>
                     </li>
